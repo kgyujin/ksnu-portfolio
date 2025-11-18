@@ -7,13 +7,13 @@ class APIClient {
   }
 
   async request(endpoint, options = {}) {
-    // 프로덕션(GitHub Pages)에서는 항상 정적 데이터 사용
+    // API가 비활성화되어 있으면 정적 데이터 사용
     if (!this.isEnabled) {
-      console.info(`📦 Using static data for ${endpoint} (GitHub Pages mode)`);
+      console.info(`📦 Using static data for ${endpoint} (API disabled)`);
       return this.getFallbackData(endpoint);
     }
 
-    // 로컬 개발 환경에서는 API 시도
+    // API 요청 시도 (로컬 또는 Railway)
     const url = `${this.baseURL}${endpoint}`;
     const config = {
       headers: {
@@ -116,14 +116,7 @@ class APIClient {
       '/stats/visit': { success: true, message: 'Using static mode' },
       '/stats': { totalVisits: 0, uniqueVisitors: 0 },
       '/stats/projects': { totalProjects: 6 },
-      '/comments': [
-        {
-          id: 1,
-          name: '방문자',
-          message: '포트폴리오 구경하고 갑니다!',
-          created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-        }
-      ]
+      '/comments': []
     };
 
     // 동적 엔드포인트 처리
@@ -196,10 +189,10 @@ class APIClient {
   }
 
   async createComment(data) {
-    // GitHub Pages(정적 모드)에서는 작성 불가
+    // API가 비활성화되어 있으면 작성 불가
     if (!this.isEnabled) {
-      console.warn('📦 GitHub Pages에서는 댓글 작성이 지원되지 않습니다.');
-      throw new Error('GitHub Pages에서는 댓글 작성이 지원되지 않습니다. 로컬 환경에서 테스트해주세요.');
+      console.warn('📦 API가 비활성화되어 댓글 작성이 불가능합니다.');
+      throw new Error('API 서버에 연결할 수 없습니다. 잠시 후 다시 시도해주세요.');
     }
     
     return this.request('/comments', {
@@ -209,10 +202,10 @@ class APIClient {
   }
 
   async deleteComment(id, password) {
-    // GitHub Pages(정적 모드)에서는 삭제 불가
+    // API가 비활성화되어 있으면 삭제 불가
     if (!this.isEnabled) {
-      console.warn('📦 GitHub Pages에서는 댓글 삭제가 지원되지 않습니다.');
-      throw new Error('GitHub Pages에서는 댓글 삭제가 지원되지 않습니다. 로컬 환경에서 테스트해주세요.');
+      console.warn('📦 API가 비활성화되어 댓글 삭제가 불가능합니다.');
+      throw new Error('API 서버에 연결할 수 없습니다. 잠시 후 다시 시도해주세요.');
     }
     
     return this.request(`/comments/${id}`, {
