@@ -4,6 +4,14 @@ class APIClient {
   constructor() {
     this.baseURL = AppConfig.currentAPIBaseURL;
     this.isEnabled = AppConfig.isAPIEnabled;
+    
+    // 디버깅 정보 출력
+    console.log('🔧 API Client Initialized:', {
+      hostname: window.location.hostname,
+      isProduction: AppConfig.isProduction,
+      baseURL: this.baseURL,
+      isEnabled: this.isEnabled
+    });
   }
 
   async request(endpoint, options = {}) {
