@@ -28,14 +28,14 @@ const AppConfig = {
       enabled: true,
       useDataAPI: false
     },
-    // 프로덕션 환경: 설정 필요 (GitHub Variables로 관리)
+    // 프로덕션 환경: MongoDB Data API 사용
     production: {
       baseURL: '',
-      enabled: false,
-      useDataAPI: false,  // MongoDB Data API 사용 시 true로 변경
+      enabled: true,
+      useDataAPI: true,  // MongoDB Data API 활성화
       dataAPI: {
-        url: '',  // GitHub Variables: MONGODB_DATA_API_URL
-        key: '',  // GitHub Variables: MONGODB_DATA_API_KEY
+        url: '',  // GitHub Actions에서 주입됨
+        key: '',  // GitHub Actions에서 주입됨
         dataSource: 'ksnu-portfolio-cluster',
         database: 'portfolio'
       }

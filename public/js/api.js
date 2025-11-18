@@ -116,14 +116,7 @@ class APIClient {
       '/stats/visit': { success: true, message: 'Using static mode' },
       '/stats': { totalVisits: 0, uniqueVisitors: 0 },
       '/stats/projects': { totalProjects: 6 },
-      '/comments': [
-        {
-          id: 1,
-          name: '방문자',
-          message: '멋진 포트폴리오네요! 많은 도움이 되었습니다.',
-          created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-        }
-      ]
+      '/comments': []
     };
 
     // 동적 엔드포인트 처리
