@@ -1,0 +1,45 @@
+# 참조 파일
+ref/
+
+# 로그 파일
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules
+node_modules/
+backend/node_modules/
+
+# 환경 변수 파일
+.env
+
+# Docker 관련
+docker-compose.override.yml
+
+# 빌드 산출물
+dist/
+build/
+
+# 임시 파일
+*.tmp
+*.temp
+
+# 데이터베이스 덤프
+*.sql.gz
+dump.sql
+
+# Coverage
+coverage/
+*.lcov

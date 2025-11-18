@@ -1,0 +1,38 @@
+# Git 관련
+.git
+.gitignore
+.github
+
+# 문서
+README.md
+LICENSE
+
+# Node modules (필요시)
+node_modules
+npm-debug.log
+
+# 참조 파일
+ref/
+
+# Docker 관련
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# IDE 설정
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
