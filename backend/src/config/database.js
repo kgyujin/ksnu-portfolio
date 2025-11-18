@@ -1,31 +1,50 @@
-const mysql = require('mysql2/promise');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const pool = mysql.createPool({
-  host: process.env.MYSQL_HOST || 'localhost',
-  port: process.env.MYSQL_PORT || 3306,
-  user: process.env.MYSQL_USER || 'portfolio_user',
-  password: process.env.MYSQL_PASSWORD || 'portfolio_pass',
-  database: process.env.MYSQL_DATABASE || 'portfolio_db',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-  enableKeepAlive: true,
-  keepAliveInitialDelay: 0,
-  charset: 'utf8mb4'
-});
+const connectDB = async () => {
+  try {
+    const mongoURI = process.env.MONGODB_URI;
+    const dbName = process.env.DB_NAME || 'portfolio';
 
-// 연결 테스트 및 문자셋 설정
-pool.getConnection()
-  .then(async connection => {
-    // UTF-8 설정 명시적으로 적용
-    await connection.query("SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'");
-    await connection.query("SET CHARACTER SET utf8mb4");
-    await connection.query("SET character_set_connection=utf8mb4");
-    console.log('✅ Database connected successfully with UTF-8 encoding');
-    connection.release();
-  })
-  .catch(err => {
-    console.error('❌ Database connection failed:', err.message);
-  });
+    if (!mongoURI) {
+      throw new Error('MONGODB_URI is not defined in environment variables');
+    }
 
-module.exports = pool;
+    // MongoDB 연결 옵션
+    const options = {
+      dbName: dbName,
+      serverSelectionTimeoutMS: 5000, // 5초 타임아웃
+      socketTimeoutMS: 45000,
+    };
+
+    // MongoDB 연결
+    await mongoose.connect(mongoURI, options);
+
+    console.log('✅ MongoDB connected successfully');
+    console.log(`📦 Database: ${dbName}`);
+    console.log(`🌍 Host: ${mongoose.connection.host}`);
+
+    // 연결 에러 핸들링
+    mongoose.connection.on('error', (err) => {
+      console.error('❌ MongoDB connection error:', err);
+    });
+
+    // 연결 끊김 핸들링
+    mongoose.connection.on('disconnected', () => {
+      console.warn('⚠️  MongoDB disconnected');
+    });
+
+    // 프로세스 종료 시 연결 정리
+    process.on('SIGINT', async () => {
+      await mongoose.connection.close();
+      console.log('🔌 MongoDB connection closed through app termination');
+      process.exit(0);
+    });
+
+  } catch (error) {
+    console.error('❌ MongoDB connection failed:', error.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;

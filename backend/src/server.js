@@ -4,14 +4,19 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const connectDB = require('./config/database');
 
 const projectRoutes = require('./routes/projects');
 const guestbookRoutes = require('./routes/guestbook');
 const skillsRoutes = require('./routes/skills');
 const statsRoutes = require('./routes/stats');
+const commentsRoutes = require('./routes/comments');
 
 const app = express();
-const PORT = process.env.API_PORT || 3000;
+const PORT = process.env.PORT || 3000;
+
+// MongoDB 연결
+connectDB();
 
 // 보안 미들웨어
 app.use(helmet());
@@ -52,6 +57,7 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/guestbook', guestbookRoutes);
 app.use('/api/skills', skillsRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/comments', commentsRoutes);
 
 // 404 핸들러
 app.use((req, res) => {
@@ -69,8 +75,8 @@ app.use((err, req, res, next) => {
 // 서버 시작
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 API Server is running on port ${PORT}`);
-  console.log(`📊 Environment: ${process.env.NODE_ENV}`);
-  console.log(`🔗 Database: ${process.env.MYSQL_HOST}:${process.env.MYSQL_PORT}`);
+  console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔗 Database: MongoDB Atlas`);
 });
 
 module.exports = app;

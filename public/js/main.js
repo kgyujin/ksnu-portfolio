@@ -4,6 +4,7 @@ import { ProjectManager } from './projects.js';
 import { SkillManager } from './skills.js';
 import { UIManager } from './ui.js';
 import { TypingAnimation } from './typing.js';
+import { CommentManager } from './comments.js';
 import OpentutorialsManager from './opentutorials.js';
 import AppConfig from './config.js';
 
@@ -14,6 +15,7 @@ class App {
     this.projectManager = new ProjectManager(this.api);
     this.skillManager = new SkillManager();
     this.uiManager = new UIManager();
+    this.commentManager = new CommentManager(this.api);
     
     this.opentutorials = new OpentutorialsManager({
       enableChat: AppConfig.opentutorials.enableChat,
@@ -36,6 +38,7 @@ class App {
       await this.projectManager.init();
       this.skillManager.init();
       this.uiManager.init();
+      await this.commentManager.init();
       
       this.opentutorials.init();
       this.opentutorials.trackPageView(window.location.pathname);

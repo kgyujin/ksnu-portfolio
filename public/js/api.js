@@ -115,14 +115,34 @@ class APIClient {
       '/projects/featured/list': [],
       '/stats/visit': { success: true, message: 'Using static mode' },
       '/stats': { totalVisits: 0, uniqueVisitors: 0 },
-      '/stats/projects': { totalProjects: 6 }
+      '/stats/projects': { totalProjects: 6 },
+      '/comments': [
+        {
+          id: 1,
+          name: '방문자',
+          message: '멋진 포트폴리오네요! 많은 도움이 되었습니다.',
+          created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+        }
+      ]
     };
 
-    // 동적 엔드포인트 처리 (/projects/:id)
+    // 동적 엔드포인트 처리
     if (endpoint.startsWith('/projects/') && endpoint !== '/projects/featured/list') {
       const id = parseInt(endpoint.split('/')[2]);
       const project = fallbackData['/projects'].find(p => p.id === id);
       return project || null;
+    }
+
+    // POST 요청 (댓글 작성) - GitHub Pages에서는 저장 불가
+    if (endpoint === '/comments' && !this.isEnabled) {
+      console.info('📦 Static mode: Comment submission simulated');
+      return { success: true, message: 'GitHub Pages에서는 댓글 작성이 지원되지 않습니다. 로컬 환경에서 테스트해주세요.' };
+    }
+
+    // DELETE 요청 (댓글 삭제) - GitHub Pages에서는 삭제 불가
+    if (endpoint.startsWith('/comments/') && !this.isEnabled) {
+      console.info('📦 Static mode: Comment deletion simulated');
+      throw new Error('GitHub Pages에서는 댓글 삭제가 지원되지 않습니다.');
     }
 
     return fallbackData[endpoint] || null;
@@ -179,6 +199,24 @@ class APIClient {
 
   async getProjectStats() {
     return this.request('/stats/projects');
+  }
+
+  async getComments() {
+    return this.request('/comments');
+  }
+
+  async createComment(data) {
+    return this.request('/comments', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }
+
+  async deleteComment(id, password) {
+    return this.request(`/comments/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ password })
+    });
   }
 }
 

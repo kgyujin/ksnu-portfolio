@@ -21,9 +21,35 @@ jobs:
   # 빌드 작업
   build:
     runs-on: ubuntu-latest
+    environment: github-pages  # Environment 사용
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
+
+      - name: 🔧 Inject MongoDB Data API credentials
+        env:
+          MONGODB_DATA_API_URL: ${{ vars.MONGODB_DATA_API_URL || '' }}
+          MONGODB_DATA_API_KEY: ${{ secrets.MONGODB_DATA_API_KEY || '' }}
+          MONGODB_DATA_SOURCE: ${{ vars.MONGODB_DATA_SOURCE || 'ksnu-portfolio-cluster' }}
+          MONGODB_DATABASE: ${{ vars.MONGODB_DATABASE || 'portfolio' }}
+        run: |
+          echo "🔧 Injecting MongoDB Data API credentials into config.js..."
+          
+          # config.template.js에서 환경변수 주입
+          if [ -f "public/js/config.template.js" ]; then
+            sed "s|\${MONGODB_DATA_API_URL}|$MONGODB_DATA_API_URL|g" public/js/config.template.js | \
+            sed "s|\${MONGODB_DATA_API_KEY}|$MONGODB_DATA_API_KEY|g" | \
+            sed "s|\${MONGODB_DATA_SOURCE}|$MONGODB_DATA_SOURCE|g" | \
+            sed "s|\${MONGODB_DATABASE}|$MONGODB_DATABASE|g" > public/js/config.js
+            
+            echo "✅ Environment variables injected from template!"
+          else
+            echo "⚠️ config.template.js not found, using config.js as-is"
+          fi
+          
+          echo "✅ MongoDB Data API configured!"
+          echo "Data Source: $MONGODB_DATA_SOURCE"
+          echo "Database: $MONGODB_DATABASE"
 
       - name: 🔧 Setup Pages
         uses: actions/configure-pages@v4

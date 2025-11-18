@@ -3,9 +3,11 @@
 ![Portfolio Banner](https://img.shields.io/badge/Portfolio-Web%20Application-yellow)
 ![Docker](https://img.shields.io/badge/Docker-Supported-blue)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-green)
-![MySQL](https://img.shields.io/badge/Database-MySQL%208.0-orange)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB%20Atlas-green)
 
-군산대학교 소프트웨어학부 김규진의 웹 포트폴리오 사이트입니다. Docker를 활용한 컨테이너화 및 GitHub Actions를 통한 CI/CD 파이프라인이 구축되어 있습니다.
+군산대학교 소프트웨어학부 김규진의 웹 포트폴리오 사이트입니다. Docker를 활용한 컨테이너화 및 GitHub Actions를 통한 CI/CD 파이프라인, MongoDB Atlas 클라우드 데이터베이스가 구축되어 있습니다.
+
+> ⚠️ **보안 주의**: 이 프로젝트는 MongoDB Atlas를 사용하며, 데이터베이스 연결 정보는 환경변수로 관리됩니다. 자세한 내용은 [SECURITY.md](SECURITY.md)를 참조하세요.
 
 ## 📋 목차
 
@@ -89,13 +91,23 @@ graph TB
 - **GSAP**: 고급 애니메이션 라이브러리
 
 ### Backend & Infrastructure
+- **Node.js 18**: 백엔드 API 서버
+- **Express**: REST API 프레임워크
+- **Mongoose**: MongoDB ODM
+- **MongoDB Atlas**: 클라우드 NoSQL 데이터베이스 (512MB 무료)
 - **Nginx**: 웹 서버 (Alpine Linux 기반)
-- **MySQL 8.0**: 관계형 데이터베이스
 - **Docker**: 컨테이너화 플랫폼
 - **Docker Compose**: 멀티 컨테이너 오케스트레이션
 
+### Security
+- **SHA-256**: 비밀번호 해싱
+- **XSS Prevention**: HTML 엔티티 인코딩
+- **MongoDB Injection Prevention**: Mongoose 스키마 검증
+- **Environment Variables**: 민감한 정보 보호
+
 ### DevOps
 - **GitHub Actions**: CI/CD 파이프라인
+- **GitHub Pages**: 정적 사이트 호스팅
 - **GitHub Container Registry (GHCR)**: Docker 이미지 저장소
 
 ## 📁 프로젝트 구조
@@ -198,6 +210,7 @@ git push origin main
 - **Docker**: 20.10 이상
 - **Docker Compose**: 2.0 이상
 - **Git**: 버전 관리
+- **MongoDB Atlas 계정**: 무료 512MB 클러스터
 
 ### 실행 방법
 
@@ -208,28 +221,52 @@ git clone https://github.com/kgyujin/ksnu-portfolio.git
 cd ksnu-portfolio
 ```
 
-2. **Docker Compose로 실행**
+2. **환경변수 설정** 🔐
 
 ```bash
-docker compose up -d
+# .env.example을 복사하여 .env 생성
+cp .env.example .env
+
+# .env 파일 편집 (MongoDB Atlas 연결 문자열 입력)
+nano .env
 ```
 
-3. **웹 브라우저에서 확인**
+`.env` 파일 예시:
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/
+DB_NAME=portfolio
+NODE_ENV=development
+```
+
+> ⚠️ **중요**: `.env` 파일은 Git에 커밋되지 않습니다. 자세한 내용은 [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md)를 참조하세요.
+
+3. **Docker Compose로 실행**
+
+```bash
+docker compose up -d --build
+```
+
+4. **MongoDB 연결 확인**
+
+```bash
+# API 로그 확인
+docker logs portfolio-api
+
+# 정상 연결 시 아래 메시지가 출력됨
+# ✅ MongoDB connected successfully
+# 📦 Database: portfolio
+```
+
+5. **웹 브라우저에서 확인**
 
 ```
 http://localhost:8080
 ```
 
-4. **서비스 중지**
+6. **서비스 중지**
 
 ```bash
 docker compose down
-```
-
-5. **데이터 볼륨까지 삭제 (선택사항)**
-
-```bash
-docker compose down -v
 ```
 
 ## 🐳 Docker 사용법
