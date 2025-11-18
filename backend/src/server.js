@@ -22,8 +22,22 @@ connectDB();
 app.use(helmet());
 
 // CORS 설정
+const allowedOrigins = [
+  'http://localhost:8080',
+  'http://127.0.0.1:8080',
+  'https://kgyujin.github.io',
+  process.env.CORS_ORIGIN
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
+  origin: (origin, callback) => {
+    // origin이 없는 경우(예: 모바일 앱, Postman) 또는 허용된 origin인 경우
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
