@@ -44,8 +44,11 @@ const AppConfig = {
   },
   
   get isProduction() {
-    return window.location.hostname !== 'localhost' && 
-           window.location.hostname !== '127.0.0.1';
+    const hostname = window.location.hostname;
+    const isLocal = hostname === 'localhost' || 
+                    hostname === '127.0.0.1' || 
+                    hostname === '';
+    return !isLocal;
   },
   
   get currentAPIBaseURL() {
@@ -53,7 +56,8 @@ const AppConfig = {
   },
   
   get isAPIEnabled() {
-    return this.isProduction ? this.api.production.enabled : this.api.development.enabled;
+    // 항상 API 활성화 (Railway가 배포되어 있으므로)
+    return true;
   }
 };
 
