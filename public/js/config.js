@@ -28,17 +28,11 @@ const AppConfig = {
       enabled: true,
       useDataAPI: false
     },
-    // 프로덕션 환경: MongoDB Data API 사용
+    // 프로덕션 환경: Railway 백엔드 API 사용
     production: {
-      baseURL: '',
+      baseURL: 'https://ksnu-portfolio-production.up.railway.app/api',  // Railway 배포 후 URL로 변경
       enabled: true,
-      useDataAPI: true,  // MongoDB Data API 활성화
-      dataAPI: {
-        url: '',  // GitHub Actions에서 주입됨
-        key: '',  // GitHub Actions에서 주입됨
-        dataSource: 'ksnu-portfolio-cluster',
-        database: 'portfolio'
-      }
+      useDataAPI: false
     }
   },
   

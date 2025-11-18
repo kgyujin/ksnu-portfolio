@@ -1,21 +1,4 @@
 services:
-  # 웹 애플리케이션 서비스 (Nginx)
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: portfolio-web
-    ports:
-      - "${WEB_PORT:-8080}:80"
-    networks:
-      - portfolio-network
-    restart: unless-stopped
-    depends_on:
-      - api
-    environment:
-      - NGINX_HOST=localhost
-      - NGINX_PORT=80
-
   # 백엔드 API 서비스 (Node.js + Express + MongoDB Atlas)
   api:
     build:
@@ -24,8 +7,6 @@ services:
     container_name: portfolio-api
     ports:
       - "${API_PORT:-3000}:3000"
-    networks:
-      - portfolio-network
     restart: unless-stopped
     environment:
       - NODE_ENV=${NODE_ENV:-development}
@@ -42,8 +23,3 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-
-# 네트워크 설정
-networks:
-  portfolio-network:
-    driver: bridge
