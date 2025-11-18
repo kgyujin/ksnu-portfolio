@@ -29,6 +29,13 @@ jobs:
         docker build -t ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
         docker tag ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} ${{ env.DOCKER_IMAGE_NAME }}:latest
 
+    - name: 환경변수 설정 (CI용)
+      run: |
+        echo "🔧 CI 환경을 위한 환경변수 설정..."
+        echo "MONGODB_URI=mongodb://localhost:27017/test" >> $GITHUB_ENV
+        echo "DB_NAME=test" >> $GITHUB_ENV
+        echo "NODE_ENV=test" >> $GITHUB_ENV
+
     - name: Docker Compose로 서비스 테스트
       run: |
         echo "🧪 Docker Compose를 사용하여 서비스를 테스트합니다..."
@@ -43,8 +50,8 @@ jobs:
       run: |
         echo "📋 웹 서비스 로그:"
         docker compose logs web
-        echo "📋 데이터베이스 서비스 로그:"
-        docker compose logs db
+        echo "📋 API 서비스 로그:"
+        docker compose logs api || echo "API 서비스 로그 없음"
 
     - name: Docker Compose 정리
       if: always()
