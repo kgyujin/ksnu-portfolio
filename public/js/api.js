@@ -133,18 +133,6 @@ class APIClient {
       return project || null;
     }
 
-    // POST 요청 (댓글 작성) - GitHub Pages에서는 저장 불가
-    if (endpoint === '/comments' && !this.isEnabled) {
-      console.info('📦 Static mode: Comment submission simulated');
-      return { success: true, message: 'GitHub Pages에서는 댓글 작성이 지원되지 않습니다. 로컬 환경에서 테스트해주세요.' };
-    }
-
-    // DELETE 요청 (댓글 삭제) - GitHub Pages에서는 삭제 불가
-    if (endpoint.startsWith('/comments/') && !this.isEnabled) {
-      console.info('📦 Static mode: Comment deletion simulated');
-      throw new Error('GitHub Pages에서는 댓글 삭제가 지원되지 않습니다.');
-    }
-
     return fallbackData[endpoint] || null;
   }
 
@@ -202,10 +190,18 @@ class APIClient {
   }
 
   async getComments() {
-    return this.request('/comments');
+    const result = await this.request('/comments');
+    // 항상 배열을 반환하도록 보장
+    return Array.isArray(result) ? result : [];
   }
 
   async createComment(data) {
+    // GitHub Pages(정적 모드)에서는 작성 불가
+    if (!this.isEnabled) {
+      console.warn('📦 GitHub Pages에서는 댓글 작성이 지원되지 않습니다.');
+      throw new Error('GitHub Pages에서는 댓글 작성이 지원되지 않습니다. 로컬 환경에서 테스트해주세요.');
+    }
+    
     return this.request('/comments', {
       method: 'POST',
       body: JSON.stringify(data)
@@ -213,6 +209,12 @@ class APIClient {
   }
 
   async deleteComment(id, password) {
+    // GitHub Pages(정적 모드)에서는 삭제 불가
+    if (!this.isEnabled) {
+      console.warn('📦 GitHub Pages에서는 댓글 삭제가 지원되지 않습니다.');
+      throw new Error('GitHub Pages에서는 댓글 삭제가 지원되지 않습니다. 로컬 환경에서 테스트해주세요.');
+    }
+    
     return this.request(`/comments/${id}`, {
       method: 'DELETE',
       body: JSON.stringify({ password })
