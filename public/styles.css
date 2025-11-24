@@ -320,17 +320,21 @@ body {
   margin-top: 20px;
 }
 
-.icons .icon {
+.icons a {
   display: inline-block;
-  width: 30px;
-  height: 30px;
   margin-right: 10px;
-  border-radius: 0;
-  transition: filter 0.3s;
+  transition: opacity 0.3s;
 }
 
-.icons .icon:hover {
-  filter: brightness(0.7);
+.icons a:hover {
+  opacity: 0.7;
+}
+
+.icons .icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
 }
 
 .emoji {
@@ -341,30 +345,32 @@ body {
 
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
   padding: 20px 0;
   cursor: pointer;
   width: 100%;
-  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .project {
   position: relative;
   background-size: cover;
   background-position: center;
-  height: 200px;
-  padding: 20px;
-  border-radius: 10px;
+  height: 280px;
+  padding: 25px;
+  border-radius: 15px;
   text-align: left;
   color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 5px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .project:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 235, 59, 0.3);
 }
 
 .project::before {
@@ -374,9 +380,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%);
+  border-radius: 15px;
   z-index: 1;
+  transition: background 0.4s ease;
+}
+
+.project:hover::before {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 .project h3, .project p {
@@ -386,13 +397,20 @@ body {
 
 .project h3 {
   margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffeb3b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .project p {
   margin-top: 0;
   word-wrap: break-word;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .project-gallery::-webkit-scrollbar {
@@ -527,26 +545,34 @@ body {
 }
 
 .skills-content {
-  width: 80%;
-  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .skills-content ul {
-  display: flex;
-  gap: 20px;
-  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 30px;
+  padding: 20px;
   margin: 0;
   list-style: none;
-  white-space: nowrap;
-  animation: scrollSkills 20s linear infinite;
+  justify-items: center;
 }
 
 .skills-content ul li {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .skills-content ul li img {
-  max-height: 100px;
+  max-height: 80px;
+  max-width: 80px;
+  transition: transform 0.3s ease;
+}
+
+.skills-content ul li img:hover {
+  transform: scale(1.2);
 }
 
 
@@ -651,11 +677,12 @@ img {
 
 .modal-content {
   background-color: rgba(255, 255, 255, 0.85);
-  margin: 15% auto;
-  padding: 20px;
+  margin: 10% auto;
+  padding: 30px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
+  max-width: 700px;
   color: #000;
   backdrop-filter: blur(5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

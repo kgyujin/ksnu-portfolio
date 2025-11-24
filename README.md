@@ -15,7 +15,7 @@
 - 로컬 개발: Docker, Docker Compose
 
 ### 온라인 접속
-프로젝트는 GitHub Pages에 배포되어 있습니다:
+프로젝트는 GitHub Pages에 배포되어 있습니다.
 ```
 https://kgyujin.github.io/ksnu-portfolio/
 ```
@@ -41,7 +41,7 @@ https://kgyujin.github.io/ksnu-portfolio/
 5. 브라우저에서 `http://localhost:3000`으로 접속합니다.
 
 ### 간단한 실행 (정적 파일만)
-Docker 없이 정적 파일만 확인하려면:
+Docker 없이 정적 파일만 확인하려면 아래 명령어를 실행하고,
 ```sh
 cd public
 python3 -m http.server 8080
