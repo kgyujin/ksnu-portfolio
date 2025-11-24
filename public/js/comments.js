@@ -165,7 +165,7 @@ export class CommentManager {
       const comments = await this.api.getComments();
       
       if (!comments || comments.length === 0) {
-        this.commentsList.innerHTML = '<div class="no-comments">📭 아직 댓글이 없습니다.<br>첫 댓글을 남겨보세요!</div>';
+        this.commentsList.innerHTML = '<div class="no-comments">아직 댓글이 없습니다.<br>첫 댓글을 남겨보세요!</div>';
         this.updateCommentCount(0);
         return;
       }
@@ -223,7 +223,7 @@ export class CommentManager {
           </div>
         </div>
         <div class="comment-actions">
-          <button class="delete-btn" data-id="${comment.id}">🗑️ 삭제</button>
+          <button class="delete-btn" data-id="${comment.id}">삭제</button>
         </div>
       </div>
       <div class="comment-content"></div>

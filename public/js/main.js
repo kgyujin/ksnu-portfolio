@@ -46,11 +46,11 @@ class App {
       this.setupAnalyticsTracking();
       
       const typingAnimation = new TypingAnimation('dynamic-text', [
-        "✍️기록하며",
-        "📖배우며",
-        "🏆도전하며",
-        "🔍탐구하며",
-        "💭생각하며"
+        "기록하며",
+        "배우며",
+        "도전하며",
+        "탐구하며",
+        "생각하며"
       ]);
       typingAnimation.start();
       
