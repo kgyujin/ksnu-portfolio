@@ -5,6 +5,7 @@ export class OpentutorialsManager {
       enableComments: config.enableComments !== false,
       enableAnalytics: config.enableAnalytics !== false,
       tawkPropertyId: config.tawkPropertyId || '57a72994c11fe69b0bd8fa90',
+      tawkWidgetId: config.tawkWidgetId || 'default',
       disqusShortname: config.disqusShortname || 'web1-2',
       googleAnalyticsId: config.googleAnalyticsId || 'G-XXXXXXXXXX'
     };
@@ -32,7 +33,7 @@ export class OpentutorialsManager {
 
       const script = document.createElement('script');
       script.async = true;
-      script.src = `https://embed.tawk.to/${this.config.tawkPropertyId}/default`;
+      script.src = `https://embed.tawk.to/${this.config.tawkPropertyId}/${this.config.tawkWidgetId}`;
       script.charset = 'UTF-8';
       script.setAttribute('crossorigin', '*');
 

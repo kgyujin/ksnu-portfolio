@@ -22,6 +22,7 @@ class App {
       enableComments: AppConfig.opentutorials.enableComments,
       enableAnalytics: AppConfig.opentutorials.enableAnalytics,
       tawkPropertyId: AppConfig.opentutorials.tawkPropertyId,
+      tawkWidgetId: AppConfig.opentutorials.tawkWidgetId,
       disqusShortname: AppConfig.opentutorials.disqusShortname,
       googleAnalyticsId: AppConfig.opentutorials.googleAnalyticsId
     });

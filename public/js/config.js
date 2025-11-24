@@ -1,6 +1,7 @@
 const AppConfig = {
   opentutorials: {
     tawkPropertyId: '691bd930359b501954478dc0',
+    tawkWidgetId: '1jaacgpr0',
     enableChat: true,
     disqusShortname: 'web1-2',
     enableComments: false,
