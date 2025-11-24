@@ -88,8 +88,8 @@ export class ProjectManager {
       mediaHtml = `
         <div class="project-images">
           <img src="img/projects/project3.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="img/projects/project3_1.jpg" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
           <img src="img/projects/project3_2.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
-          <img src="img/projects/project3_3.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
           <video controls style="width: 100%; border-radius: 10px; margin: 10px 0;">
             <source src="img/projects/project3_3.mp4" type="video/mp4">
             브라우저가 비디오 태그를 지원하지 않습니다.
@@ -101,7 +101,7 @@ export class ProjectManager {
       mediaHtml = `
         <div class="project-images">
           <img src="img/projects/project4.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
-          <img src="img/projects/project4_2.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="img/projects/project4_1.jpg" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
         </div>
       `;
     } else {
