@@ -5,206 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTFOLIO</title>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- CSS 파일 분리 -->
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <link rel="stylesheet" href="styles/introduce.css">
+    <link rel="stylesheet" href="styles/skills.css">
+    <link rel="stylesheet" href="styles/projects.css">
+    <link rel="stylesheet" href="styles/comments.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 </head>
 <body>
-    <div class="pagination" aria-label="페이지 네비게이션"></div>
-
-    <main id="main-container">
-        <section id="about" class="section fade-in">
-            <div class="about-content">
-                <div class="text-content">
-                    <h1>
-                        안녕하세요!
-                        <br>
-                        <span id="dynamic-text">기록하며</span> 성장하는
-                        <br>
-                        <span id="profile-name">김규진</span>입니다.
-                    </h1>
-                    <div class="icons" aria-label="소셜 링크">
-                        <a href="https://kgyujin.tistory.com" target="_blank" aria-label="Tistory">
-                            <img src="img/logo-tistory.png" alt="Tistory">
-                        </a>
-                        <a href="https://github.com/kgyujin" target="_blank" aria-label="GitHub">
-                            <img src="img/logo-github.png" alt="GitHub">
-                        </a>
-                        <a href="mailto:k_gyujin@daum.net" aria-label="Email">
-                            <img src="img/logo-email.png" alt="Email">
-                        </a>
-                    </div>
-                </div>
-                <img src="img/profile.png" alt="프로필 사진" class="profile-img">
-            </div>
-        </section>
-        
-        <section id="timeline" class="section">
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-                <div class="timeline-year" style="left: 0%;">2020</div>
-                <div class="timeline-year" style="left: 20%;">2021</div>
-                <div class="timeline-year" style="left: 40%;">2022</div>
-                <div class="timeline-year" style="left: 60%;">2023</div>
-                <div class="timeline-year" style="left: 80%;">2024</div>
-                <div class="timeline-year" style="left: 100%;">2025</div>
-                <div class="timeline-event" style="left: 21%;" data-duration="1">
-                  <div class="timeline-dot" data-duration="1"></div>
-                  <div class="timeline-label">대학(컴퓨터정보과)</div>
-                </div>
-                <div class="timeline-event" style="left: 58%;" data-duration="2">
-                  <div class="timeline-dot" data-duration="2"></div>
-                  <div class="timeline-label">개발자(백엔드/웹)</div>
-                </div>
-                <div class="timeline-event" style="left: 81%;" data-duration="3">
-                  <div class="timeline-dot" data-duration="3"></div>
-                  <div class="timeline-label">대학(소프트웨어학부 컴퓨터정보공학전공)</div>
-                </div>
-              </div>
-        </section>
-
-        <section id="introduce" class="section zoom-in">
-            <h2 class="title">
-                INTRODUCE
-            </h2>
-            <div class="introduce-content">
-                <div class="card">
-                    <p>현재 <mark>군산대학교 소프트웨어학부(컴퓨터정보공학)</mark>에 재학 중이며 <br>인공지능이 미래 사회에 미치는 영향에 대해 관심을 가지고 알아보고 있습니다.</p>
-                    <p>개발 실력 향상 및 IT 분야에 대한 흥미를 키우기 위해 <br>알고리즘 스터디와 세미나 등의 다양한 프로그래밍 활동에 참여했으며, <br>끊임없이 고민하고 배우며 성장하고 있습니다.</p>
-                </div>
-                <div class="card">
-                    <h3 class="card-title">WORK</h3>
-                    <ul class="work-list">
-                        <li><strong>업무 효율</strong>과 <strong>편의성</strong> 향상을 추구합니다.</li>
-                        <li><strong>과정에서의 재미</strong>를 중요시하며, <strong>목표 달성</strong>에도 집중합니다.</li>
-                        <li><strong>문제 발생</strong> 시, <strong>합리적인 타협</strong>을 통해 <strong>해결책</strong>을 찾습니다.</li>
-                        <li><strong>정해진 기간 준수</strong>에 노력합니다.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="section fade-in">
-            <h2 class="title">
-                SKILLS
-            </h2>
-            <div class="skills-content">
-                <ul id="skills-list">
-                    <li><img src="img/skills/AndroidStudio-Light.svg" alt="AndroidStudio"></li>
-                    <li><img src="img/skills/C.svg" alt="C"></li>
-                    <li><img src="img/skills/CPP.svg" alt="CPP"></li>
-                    <li><img src="img/skills/CS.svg" alt="CS"></li>
-                    <li><img src="img/skills/CSS.svg" alt="CSS"></li>
-                    <li><img src="img/skills/DotNet.svg" alt="DotNet"></li>
-                    <li><img src="img/skills/Eclipse-Light.svg" alt="Eclipse"></li>
-                    <li><img src="img/skills/Figma-Light.svg" alt="Figma"></li>
-                    <li><img src="img/skills/Flask-Light.svg" alt="Flask"></li>
-                    <li><img src="img/skills/Gatsby.svg" alt="Gatsby"></li>
-                    <li><img src="img/skills/GCP-Light.svg" alt="GCP"></li>
-                    <li><img src="img/skills/Git.svg" alt="Git"></li>
-                    <li><img src="img/skills/Github-Light.svg" alt="Github"></li>
-                    <li><img src="img/skills/GithubActions-Light.svg" alt="GitHub Actions"></li>
-                    <li><img src="img/skills/GitLab-Light.svg" alt="GitLab"></li>
-                    <li><img src="img/skills/Gradle-Light.svg" alt="Gradle"></li>
-                    <li><img src="img/skills/HTML.svg" alt="HTMl"></li>
-                    <li><img src="img/skills/Idea-Light.svg" alt="Idea"></li>
-                    <li><img src="img/skills/Illustrator.svg" alt="Illustrator"></li>
-                    <li><img src="img/skills/Java-Light.svg" alt="Java"></li>
-                    <li><img src="img/skills/JavaScript.svg" alt="JavaScript"></li>
-                    <li><img src="img/skills/JQuery.svg" alt="JQuery"></li>
-                    <li><img src="img/skills/Linux-Light.svg" alt="Linux"></li>
-                    <li><img src="img/skills/Markdown-Light.svg" alt="Markdown"></li>
-                    <li><img src="img/skills/Maven-Light.svg" alt="Maven"></li>
-                    <li><img src="img/skills/MySQL-Light.svg" alt="MySQL"></li>
-                    <li><img src="img/skills/Netlify-Light.svg" alt="Netlify"></li>
-                    <li><img src="img/skills/PHP-Light.svg" alt="PHP"></li>
-                    <li><img src="img/skills/Postman.svg" alt="Postman"></li>
-                    <li><img src="img/skills/Python-Light.svg" alt="Python"></li>
-                    <li><img src="img/skills/PyTorch-Light.svg" alt="PyTorch"></li>
-                    <li><img src="img/skills/React-Light.svg" alt="React"></li>
-                    <li><img src="img/skills/Spring-Light.svg" alt="Spring"></li>
-                    <li><img src="img/skills/SQLite.svg" alt="SQLite"></li>
-                    <li><img src="img/skills/TensorFlow-Light.svg" alt="TensorFlow"></li>
-                    <li><img src="img/skills/Unity-Light.svg" alt="Unity"></li>
-                    <li><img src="img/skills/Vercel-Dark.svg" alt="Vercel"></li>
-                    <li><img src="img/skills/VIM-Light.svg" alt="VIM"></li>
-                    <li><img src="img/skills/VisualStudio-Light.svg" alt="VisualStudio"></li>
-                    <li><img src="img/skills/VSCode-Light.svg" alt="VSCode"></li>
-                    <li><img src="img/skills/Wordpress.svg" alt="Wordpress"></li>
-                    <li><img src="img/skills/XD.svg" alt="XD"></li>
-                </ul>
-            </div>
-        </section>
-        
-        <section id="projects" class="section slide-up">
-            <h2 class="title">
-                PROJECTS
-            </h2>
-            <div class="project-gallery">
-                <!-- 프로젝트 카드는 JavaScript로 동적 생성됩니다 -->
-            </div>
-        </section>
-
-        <div id="project-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <div id="project-detail"></div>
-            </div>
-        </div>
-
-        <!-- 댓글 섹션 -->
-        <section id="comments" class="section fade-in">
-            <h2 class="title">
-                COMMENTS
-            </h2>
-            <div class="comments-container">
-                <!-- 댓글 작성 폼 -->
-                <div class="comment-form-wrapper">
-                    <h3>댓글 남기기</h3>
-                    <form id="comment-form" class="comment-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="comment-username">이름 <span class="required">*</span></label>
-                                <input type="text" id="comment-username" name="username" required maxlength="50" placeholder="이름을 입력하세요">
-                            </div>
-                            <div class="form-group">
-                                <label for="comment-password">비밀번호 <span class="required">*</span></label>
-                                <input type="password" id="comment-password" name="password" required minlength="4" maxlength="20" placeholder="4자 이상 입력">
-                                <small>댓글 삭제 시 사용됩니다</small>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="comment-content">댓글 내용 <span class="required">*</span></label>
-                            <textarea id="comment-content" name="content" required maxlength="500" rows="5" placeholder="댓글을 입력하세요 (최대 500자)"></textarea>
-                            <div class="char-count">
-                                <span id="char-current">0</span> / 500
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn">댓글 작성</button>
-                    </form>
-                </div>
-
-                <!-- 댓글 목록 -->
-                <div class="comments-list-wrapper">
-                    <h3>댓글 목록 <span id="comment-count" class="comment-count">(0)</span></h3>
-                    <div id="comments-list" class="comments-list">
-                        <div class="loading">댓글을 불러오는 중...</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- HTML 컴포넌트는 JavaScript로 동적 로드됩니다 -->
+    <main id="main-container"></main>
     
-    </main>
-
-    <div class="footer">
-        <p>객체지향S/W 개발 프로젝트 - 김규진</p>
-        <div class="footer-links">
-            <a href="https://github.com/kgyujin/ksnu-webPortfolio" target="_blank" class="footer-link">GitHub</a>
-            <a href="https://kgyujin.notion.site/ad8aa81a1bdb41e29951345f767723ad?pvs=4" target="_blank" class="footer-link">Notion</a>
-        </div>
-    </div>
-    
+    <!-- 컴포넌트 로더 -->
+    <script type="module" src="js/componentLoader.js"></script>
     <script type="module" src="js/main.js"></script>
     
     <!--Start of Tawk.to Script-->

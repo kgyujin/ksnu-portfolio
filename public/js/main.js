@@ -98,9 +98,22 @@ class App {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// 컴포넌트 로드 완료 후 앱 초기화
+window.addEventListener('componentsLoaded', () => {
   const app = new App();
   app.init();
+});
+
+// DOMContentLoaded는 컴포넌트 로더에서 처리하므로 백업용으로만 사용
+document.addEventListener('DOMContentLoaded', () => {
+  // 컴포넌트 로더가 없는 경우를 대비한 백업 초기화
+  setTimeout(() => {
+    if (!document.querySelector('#about')) {
+      console.log('컴포넌트 로더 없이 직접 초기화');
+      const app = new App();
+      app.init();
+    }
+  }, 100);
 });
 
 document.oncontextmenu = function() { return false; };

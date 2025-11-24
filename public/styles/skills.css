@@ -1,0 +1,56 @@
+/* Skills 섹션 */
+.skills-content {
+  width: 100%;
+  max-width: 900px;
+}
+
+.skills-content ul {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 25px;
+  padding: 20px;
+  margin: 0;
+  list-style: none;
+  justify-items: center;
+}
+
+.skills-content ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills-content ul li img {
+  max-height: 70px;
+  max-width: 70px;
+  transition: transform 0.3s ease;
+}
+
+.skills-content ul li img:hover {
+  transform: scale(1.2);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .skills-content ul {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+  }
+  
+  .skills-content ul li img {
+    max-height: 50px;
+    max-width: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-content ul {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .skills-content ul li img {
+    max-height: 40px;
+    max-width: 40px;
+  }
+}
