@@ -24,7 +24,7 @@ export class ComponentLoader {
         // 로드할 컴포넌트 순서
         const components = [
             'about',
-            'timeline',
+            // 'timeline',  // 숨김 처리
             'introduce',
             'skills',
             'projects',
