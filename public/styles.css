@@ -273,6 +273,11 @@ body {
   }
 }
 
+.text-content {
+  position: relative;
+  z-index: 10;
+}
+
 .text-content h1 {
   margin: 0;
   font-size: 2.5rem;
@@ -291,6 +296,7 @@ body {
   right: -100px;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -318,16 +324,16 @@ body {
 
 .icons {
   margin-top: 20px;
-}
-
-.icons {
   display: flex;
   gap: 15px;
+  position: relative;
+  z-index: 10;
 }
 
 .icons a {
   display: block;
   transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .icons a:hover {
@@ -338,6 +344,7 @@ body {
   display: block;
   width: 30px;
   height: 30px;
+  pointer-events: none;
 }
 
 .emoji {

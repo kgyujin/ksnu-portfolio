@@ -81,8 +81,39 @@ export class ProjectManager {
       `;
     }
 
+    // 프로젝트별 이미지 구성
+    let mediaHtml = '';
+    if (project.id === 3) {
+      // 프로젝트 3: 이미지 3개 + 영상
+      mediaHtml = `
+        <div class="project-images">
+          <img src="img/projects/project3.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="img/projects/project3_2.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="img/projects/project3_3.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <video controls style="width: 100%; border-radius: 10px; margin: 10px 0;">
+            <source src="img/projects/project3_3.mp4" type="video/mp4">
+            브라우저가 비디오 태그를 지원하지 않습니다.
+          </video>
+        </div>
+      `;
+    } else if (project.id === 4) {
+      // 프로젝트 4: 이미지 2개
+      mediaHtml = `
+        <div class="project-images">
+          <img src="img/projects/project4.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="img/projects/project4_2.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+        </div>
+      `;
+    } else {
+      // 기본: 이미지 1개
+      mediaHtml = `
+        <img src="img/projects/project${project.id}.png" alt="${project.title}" style="width: 100%; border-radius: 10px; margin: 20px 0;">
+      `;
+    }
+
     this.projectDetail.innerHTML = `
       <h2>${project.title}</h2>
+      ${mediaHtml}
       <h3>기간</h3>
       <p>${project.period}</p>
       <h3>소개</h3>
@@ -94,8 +125,6 @@ export class ProjectManager {
       ${issuesHtml}
       <h3>리뷰</h3>
       <p>${project.review}</p>
-      <h3>조회수</h3>
-      <p>${project.view_count || 0}회</p>
     `;
     this.modal.style.display = 'block';
   }
