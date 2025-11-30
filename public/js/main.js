@@ -7,6 +7,7 @@ import { TypingAnimation } from './typing.js';
 import { CommentManager } from './comments.js';
 import OpentutorialsManager from './opentutorials.js';
 import AppConfig from './config.js';
+import AIManager from './ai.js';
 
 class App {
   constructor() {
@@ -16,6 +17,7 @@ class App {
     this.skillManager = new SkillManager();
     this.uiManager = new UIManager();
     this.commentManager = new CommentManager(this.api);
+    this.aiManager = new AIManager();
     
     this.opentutorials = new OpentutorialsManager({
       enableChat: AppConfig.opentutorials.enableChat,
@@ -41,6 +43,9 @@ class App {
       this.uiManager.init();
       await this.commentManager.init();
       
+      // TensorFlow.js AI 기능 초기화
+      await this.aiManager.init();
+      
       this.opentutorials.init();
       this.opentutorials.trackPageView(window.location.pathname);
       this.setupAnalyticsTracking();
@@ -49,13 +54,17 @@ class App {
         "기록하며",
         "배우며",
         "도전하며",
-        "탐구하며",
-        "생각하며"
-      ]);
       typingAnimation.start();
+      
+      // AI 통계 정보 출력
+      const aiStats = this.aiManager.getStatistics();
+      console.log('🤖 AI 통계:', aiStats);
       
       console.log('✅ Application initialized successfully');
     } catch (error) {
+      console.error('❌ Application initialization failed:', error);
+    }
+  } } catch (error) {
       console.error('❌ Application initialization failed:', error);
     }
   }
