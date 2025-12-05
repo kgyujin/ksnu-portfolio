@@ -16,7 +16,7 @@ import './styles/header.css';
 import './styles/responsive.css';
 
 function App() {
-  const { isModelLoaded, interestScore } = useTensorFlow();
+  const { isModelLoaded, interestScore, projectInterests, topProject } = useTensorFlow();
 
   useEffect(() => {
     // 방문 통계 기록 (에러 무시)
@@ -53,7 +53,9 @@ function App() {
       {/* TensorFlow.js 실시간 모니터 */}
       <TensorFlowMonitor 
         isModelLoaded={isModelLoaded} 
-        interestScore={interestScore} 
+        interestScore={interestScore}
+        projectInterests={projectInterests}
+        topProject={topProject}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as tf from '@tensorflow/tfjs';
 
-const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
+const TensorFlowMonitor = ({ isModelLoaded, interestScore, projectInterests = {}, topProject }) => {
   const [expanded, setExpanded] = useState(false);
   const [memoryInfo, setMemoryInfo] = useState(null);
   const [backend, setBackend] = useState('');
@@ -159,7 +159,7 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
             opacity: 0.7,
             lineHeight: '1.4'
           }}>
-            5초마다 스크롤, 클릭, 호버, 체류시간을 분석하여 사용자 관심도를 실시간으로 예측합니다.
+            3초마다 9가지 특징(스크롤, 클릭, 호버, 체류시간, 프로젝트 인터랙션 등)을 분석하여 채용 담당자가 가장 관심있는 프로젝트를 실시간으로 예측합니다.
           </div>
         </div>
       )}
