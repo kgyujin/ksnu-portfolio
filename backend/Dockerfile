@@ -7,7 +7,8 @@ WORKDIR /app
 # package.json 및 package-lock.json 복사
 COPY package*.json ./
 
-RUN npm ci --omit=dev
+# 의존성 설치 (npm install을 사용하여 lock 파일 불일치 문제 방지)
+RUN npm install --omit=dev && npm cache clean --force
 
 # 소스 코드 복사
 COPY src/ ./src/
