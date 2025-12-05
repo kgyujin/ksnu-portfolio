@@ -1,0 +1,91 @@
+# 백엔드 API 서버 Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-api
+  namespace: portfolio
+  labels:
+    app: portfolio-api
+    tier: backend
+spec:
+  replicas: 2  # 고가용성을 위한 2개 복제본
+  selector:
+    matchLabels:
+      app: portfolio-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: portfolio-api
+        tier: backend
+        version: v1
+    spec:
+      containers:
+      - name: api
+        image: ghcr.io/kgyujin/ksnu-portfolio-api:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: NODE_ENV
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: PORT
+        - name: CORS_ORIGIN
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: CORS_ORIGIN
+        - name: TZ
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: TZ
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: DB_NAME
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongodb-uri
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+      # 이미지 풀을 위한 시크릿 (private registry 사용 시)
+      # imagePullSecrets:
+      # - name: ghcr-secret

@@ -1,0 +1,14 @@
+# MongoDB 데이터 영구 저장을 위한 PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+  namespace: portfolio
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  # storageClassName 생략 시 기본 StorageClass 사용
+  # 클라우드 환경(AWS EKS, GKE, AKS)에서는 자동으로 프로비저닝됨

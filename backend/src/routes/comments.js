@@ -54,7 +54,6 @@ function validateInput(input, maxLength = 500) {
 router.get('/', async (req, res) => {
   try {
     const comments = await Comment.find({
-      isApproved: true,
       isDeleted: false
     })
     .select('-password -ipAddress') // 민감한 정보 제외

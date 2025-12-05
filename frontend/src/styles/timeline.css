@@ -1,0 +1,106 @@
+/* 타임라인 섹션 */
+.timeline-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: calc(100% + 38px);
+  height: 2px;
+  background-color: #575757;
+  z-index: 1;
+}
+
+.timeline-event {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.timeline-dot {
+  background-color: hsla(54, 100%, 62%, 0.671);
+  border-radius: 50%;
+  transition: transform 0.3s, font-size 0.3s, background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0b0b0b;
+  font-size: 0;
+  z-index: 3;
+}
+
+.timeline-dot:hover {
+  background-color: hsl(54, 100%, 62%);
+  transform: scale(1.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.timeline-dot[data-duration="1"] {
+  width: 30px;
+  height: 30px;
+}
+
+.timeline-dot[data-duration="2"] {
+  width: 20px;
+  height: 20px;
+}
+
+.timeline-dot[data-duration="3"] {
+  width: 30px;
+  height: 30px;
+}
+
+.timeline-label {
+  font-size: 1rem;
+  color: #fff;
+  margin-top: -30px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: absolute;
+  white-space: nowrap;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.timeline-event:hover .timeline-label {
+  opacity: 1;
+}
+
+.timeline-year {
+  position: absolute;
+  bottom: -70px;
+  font-size: 1rem;
+  color: #8b8b8b;
+  z-index: 1;
+}
+
+.timeline-year:first-child {
+  left: 0%;
+}
+
+.timeline-year:nth-child(2) {
+  left: 25%;
+}
+
+.timeline-year:nth-child(3) {
+  left: 50%;
+}
+
+.timeline-year:nth-child(4) {
+  left: 75%;
+}
+
+.timeline-year:last-child {
+  left: 100%;
+  transform: translateX(-100%);
+}

@@ -1,0 +1,12 @@
+# API 서버 설정을 위한 ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: portfolio
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  CORS_ORIGIN: "*"
+  TZ: "Asia/Seoul"
+  DB_NAME: "portfolio"

@@ -1,0 +1,30 @@
+/* 페이지네이션 */
+.pagination {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot:hover {
+  background-color: #bbb;
+}
+
+.dot.active {
+  background-color: #ffeb3b;
+  box-shadow: 0 0 10px #ffeb3b;
+  transform: scale(1.2);
+}

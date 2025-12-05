@@ -1,0 +1,191 @@
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffeb3b;
+  border-radius: 10px;
+  border: 3px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffd700;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ffeb3b #1a1a1a;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #ffeb3b;
+  border-radius: 10px;
+  border: 3px solid #1a1a1a;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #ffd700;
+}
+
+/* 폰트 */
+@font-face {
+  font-family: 'WavvePADO-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/WavvePADO-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 기본 스타일 */
+body {
+  font-family: 'Pretendard', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #0b0b0b;
+  color: #fff;
+  word-break: keep-all;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 별 배경 */
+.star-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+  animation: starTwinkle 2s infinite alternate;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 섹션 공통 스타일 */
+.section {
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 70px 100px;
+  position: relative;
+  opacity: 1;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section + .section {
+  margin-top: -100px;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section.fade-in {
+  transform: translateY(20px);
+}
+
+.section.slide-up {
+  transform: translateY(50px);
+}
+
+.section.zoom-in {
+  transform: scale(0.95);
+}
+
+/* 공통 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 공통 요소 */
+.title {
+  font-family: 'WavvePADO-Regular', sans-serif;
+  color: #fff;
+}
+
+mark {
+  background: linear-gradient(to top, #ffeb3b99 50%, transparent 50%);
+  color: #fff;
+}
+
+::selection {
+  background: rgba(255, 235, 59, 0.5);
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+hr {
+  position: relative;
+  margin: 40px 0;
+  height: 1px;
+}
+
+hr::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+}
