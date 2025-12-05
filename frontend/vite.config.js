@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/ksnu-portfolio/',
+  base: process.env.VERCEL ? '/' : '/ksnu-portfolio/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
