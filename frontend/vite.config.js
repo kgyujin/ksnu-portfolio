@@ -10,8 +10,9 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'esbuild',
-    target: 'es2015',
+    target: 'es2020',
     cssCodeSplit: true,
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
@@ -30,7 +31,8 @@ export default defineConfig({
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+        format: 'es'
       }
     }
   },
