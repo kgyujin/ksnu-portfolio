@@ -6,6 +6,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Comments from './components/Comments';
 import Footer from './components/Footer';
+import TensorFlowMonitor from './components/TensorFlowMonitor';
 import { useTensorFlow } from './hooks/useTensorFlow';
 import { statsAPI } from './services/api';
 
@@ -49,22 +50,11 @@ function App() {
       </main>
       <Footer />
 
-      {/* AI 상태 표시 (개발용 - 프로덕션에서는 제거 가능) */}
-      {isModelLoaded && (
-        <div style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          background: 'rgba(0, 0, 0, 0.8)',
-          color: 'white',
-          padding: '10px',
-          borderRadius: '8px',
-          fontSize: '12px',
-          zIndex: 9999
-        }}>
-          🤖 AI: {(interestScore * 100).toFixed(0)}%
-        </div>
-      )}
+      {/* TensorFlow.js 실시간 모니터 */}
+      <TensorFlowMonitor 
+        isModelLoaded={isModelLoaded} 
+        interestScore={interestScore} 
+      />
     </div>
   );
 }
