@@ -32,17 +32,17 @@ const About = () => {
           </h1>
           <div className="icons" aria-label="소셜 링크">
             <a href="https://kgyujin.tistory.com" target="_blank" rel="noopener noreferrer" aria-label="Tistory">
-              <img src="/ksnu-portfolio/img/logo-tistory.png" alt="Tistory" />
+              <img src={`${import.meta.env.BASE_URL}img/logo-tistory.png`} alt="Tistory" />
             </a>
             <a href="https://github.com/kgyujin" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <img src="/ksnu-portfolio/img/logo-github.png" alt="GitHub" />
+              <img src={`${import.meta.env.BASE_URL}img/logo-github.png`} alt="GitHub" />
             </a>
             <a href="mailto:k_gyujin@daum.net" aria-label="Email">
-              <img src="/ksnu-portfolio/img/logo-email.png" alt="Email" />
+              <img src={`${import.meta.env.BASE_URL}img/logo-email.png`} alt="Email" />
             </a>
           </div>
         </div>
-        <img src="/ksnu-portfolio/img/profile.png" alt="프로필 사진" className="profile-img" />
+        <img src={`${import.meta.env.BASE_URL}img/profile.png`} alt="프로필 사진" className="profile-img" />
       </div>
     </section>
   );

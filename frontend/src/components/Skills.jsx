@@ -58,7 +58,7 @@ const Skills = () => {
             const altText = skill.replace('-Light.svg', '').replace('-Dark.svg', '').replace('.svg', '');
             return (
               <li key={index}>
-                <img src={`/ksnu-portfolio/img/skills/${skill}`} alt={altText} />
+                <img src={`${import.meta.env.BASE_URL}img/skills/${skill}`} alt={altText} />
               </li>
             );
           })}
