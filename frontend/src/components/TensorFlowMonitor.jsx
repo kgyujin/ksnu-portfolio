@@ -22,7 +22,7 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
       <div style={{
         position: 'fixed',
         bottom: '20px',
-        right: '20px',
+        left: '20px',
         background: 'rgba(255, 165, 0, 0.9)',
         color: 'white',
         padding: '12px 16px',
@@ -32,15 +32,15 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
         zIndex: 9999,
         boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
       }}>
-        ⏳ TensorFlow.js 로딩 중...
+        TensorFlow.js 로딩 중...
       </div>
     );
   }
 
   const getInterestLevel = (score) => {
-    if (score > 0.7) return { text: '높음 🔥', color: '#4CAF50' };
-    if (score > 0.4) return { text: '보통 📊', color: '#FFC107' };
-    return { text: '낮음 💤', color: '#F44336' };
+    if (score > 0.7) return { text: '높음', color: '#4CAF50' };
+    if (score > 0.4) return { text: '보통', color: '#FFC107' };
+    return { text: '낮음', color: '#F44336' };
   };
 
   const level = getInterestLevel(interestScore);
@@ -49,7 +49,7 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
     <div style={{
       position: 'fixed',
       bottom: '20px',
-      right: '20px',
+      left: '20px',
       background: 'rgba(0, 0, 0, 0.95)',
       color: 'white',
       padding: '16px',
@@ -72,8 +72,7 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
           marginBottom: expanded ? '12px' : '0'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px' }}>🤖</span>
-            <span style={{ fontWeight: 'bold' }}>TensorFlow.js</span>
+            <span style={{ fontWeight: 'bold' }}>TensorFlow.js AI</span>
           </div>
           <span style={{ fontSize: '12px', opacity: 0.7 }}>
             {expanded ? '▼' : '▶'}
@@ -120,13 +119,13 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
           fontSize: '11px'
         }}>
           <div style={{ marginBottom: '8px' }}>
-            <strong>✅ 모델 상태:</strong> 활성
+            <strong>모델 상태:</strong> 활성
           </div>
           <div style={{ marginBottom: '8px' }}>
-            <strong>🔧 Backend:</strong> {backend}
+            <strong>Backend:</strong> {backend}
           </div>
           <div style={{ marginBottom: '8px' }}>
-            <strong>📦 버전:</strong> {tf.version.tfjs}
+            <strong>버전:</strong> {tf.version.tfjs}
           </div>
           
           {memoryInfo && (
@@ -136,7 +135,7 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
                 paddingTop: '8px', 
                 borderTop: '1px solid rgba(255,255,255,0.1)' 
               }}>
-                <strong>💾 메모리 사용량</strong>
+                <strong>메모리 사용량</strong>
               </div>
               <div style={{ marginTop: '8px', opacity: 0.9 }}>
                 <div style={{ marginBottom: '4px' }}>
@@ -160,7 +159,7 @@ const TensorFlowMonitor = ({ isModelLoaded, interestScore }) => {
             opacity: 0.7,
             lineHeight: '1.4'
           }}>
-            💡 5초마다 스크롤, 클릭, 호버, 체류시간을 분석하여 사용자 관심도를 실시간으로 예측합니다.
+            5초마다 스크롤, 클릭, 호버, 체류시간을 분석하여 사용자 관심도를 실시간으로 예측합니다.
           </div>
         </div>
       )}

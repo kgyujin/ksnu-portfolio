@@ -65,7 +65,7 @@ export const useTensorFlow = () => {
 
     // 호버 추적
     const handleMouseOver = (e) => {
-      if (e.target.closest('.project-card, .skill-item')) {
+      if (e.target.closest('.project, #skills-list li, .comment-form, a')) {
         hoverCount++;
       }
     };
